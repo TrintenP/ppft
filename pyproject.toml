@@ -1,0 +1,48 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ppft"
+version = "0.0.1"
+authors = [
+    { name="Trinten Patten", email="trintenmpatten@gmail.com"}
+]
+description = "Collection of personal finance tools."
+readme = "README.md"
+requires-python = ">=3.12"
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Personal Usage",
+    "Programming Language :: Python :: 3.12",
+    "Operating System :: Windows"
+]
+dynamic = ["dependencies"]
+
+[project.urls]
+HomePage = "https://github.com/TrintenP/ppft"
+Documentation = "https://github.com/TrintenP/ppft/wiki"
+Issues = "https://github.com/TrintenP/ppft/issues"
+# Repository
+# ChangeLog
+# DOWNLOAD
+
+[gui_scripts]
+# Launch the GUI command
+# pt-launch-gui = 
+
+[project.scripts]
+generate-docs = "ppft.util.entrypoints:generate_documentation"
+ppft-testing   = "ppft.util.entrypoints:run_testing"
+
+[tool.black]
+line-length = 79
+
+[tool.pytest.ini_options]
+pythonpath="ppft"
+
+[tool.setuptools]
+packages = ["ppft"]
+
+[tool.setuptools.dynamic]
+dependencies = {file=["requirements.txt"]}
