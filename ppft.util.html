@@ -5,11 +5,11 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>ppft.util package &#8212; Patten&#39;s Personal Finance Tools 0.0.1 documentation</title>
+    <title>ppft.util package &#8212; Patten&#39;s Personal Finance Tools 0.0.2 documentation</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
     <link rel="stylesheet" type="text/css" href="_static/classic.css?v=2bf1fcf8" />
     
-    <script src="_static/documentation_options.js?v=d45e8c67"></script>
+    <script src="_static/documentation_options.js?v=e3a6060d"></script>
     <script src="_static/doctools.js?v=9bcbadda"></script>
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     
@@ -29,7 +29,7 @@
         <li class="right" >
           <a href="ppft.html" title="ppft package"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">Patten&#39;s Personal Finance Tools 0.0.1 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Patten&#39;s Personal Finance Tools 0.0.2 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="modules.html" >ppft</a> &#187;</li>
           <li class="nav-item nav-item-2"><a href="ppft.html" accesskey="U">ppft package</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href="">ppft.util package</a></li> 
@@ -56,15 +56,12 @@
 </dd></dl>
 
 <dl class="py function">
-<dt class="sig sig-object py" id="ppft.util.entrypoints.return_true">
-<span class="sig-prename descclassname"><span class="pre">ppft.util.entrypoints.</span></span><span class="sig-name descname"><span class="pre">return_true</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#ppft.util.entrypoints.return_true" title="Link to this definition">¶</a></dt>
-<dd><p>Placeholder for testing scripts to ensure that pts is importable.</p>
+<dt class="sig sig-object py" id="ppft.util.entrypoints.run_cli">
+<span class="sig-prename descclassname"><span class="pre">ppft.util.entrypoints.</span></span><span class="sig-name descname"><span class="pre">run_cli</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">arg_list</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#ppft.util.entrypoints.run_cli" title="Link to this definition">¶</a></dt>
+<dd><p>Runs the tool in general command line mode. Takes input from the command line interface.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>Always returns True.</p>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p>bool</p>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>arg_list</strong> (<em>list</em><em> | </em><em>None</em><em>, </em><em>optional</em>) – CMD-styled inputs of strings, defaults to sys.argv[1:]</p>
 </dd>
 </dl>
 </dd></dl>
@@ -73,21 +70,6 @@
 <dt class="sig sig-object py" id="ppft.util.entrypoints.run_testing">
 <span class="sig-prename descclassname"><span class="pre">ppft.util.entrypoints.</span></span><span class="sig-name descname"><span class="pre">run_testing</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#ppft.util.entrypoints.run_testing" title="Link to this definition">¶</a></dt>
 <dd><p>Runs coverage for test suite for patten’s tool suite.</p>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="ppft.util.entrypoints.setup_logging">
-<span class="sig-prename descclassname"><span class="pre">ppft.util.entrypoints.</span></span><span class="sig-name descname"><span class="pre">setup_logging</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">default_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'./configs/logging.json'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">default_level</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">20</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">env_key</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'LOG_CFG'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#ppft.util.entrypoints.setup_logging" title="Link to this definition">¶</a></dt>
-<dd><p>Setup logging configuration, reading in from logging configuration file if possible.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>default_path</strong> (<em>str</em><em>, </em><em>optional</em>) – Location of the logging config JSON, defaults to “./configs/logging.json”</p></li>
-<li><p><strong>default_level</strong> (<em>int</em><em> | </em><em>str</em><em>, </em><em>optional</em>) – Level to report for logging, defaults to logging.INFO</p></li>
-<li><p><strong>env_key</strong> (<em>str</em><em>, </em><em>optional</em>) – Sys. ENV variable containing the path of the config file, defaults to “LOG_CFG”</p></li>
-</ul>
-</dd>
-</dl>
 </dd></dl>
 
 </section>
@@ -131,9 +113,8 @@
 <li><a class="reference internal" href="#submodules">Submodules</a></li>
 <li><a class="reference internal" href="#module-ppft.util.entrypoints">ppft.util.entrypoints module</a><ul>
 <li><a class="reference internal" href="#ppft.util.entrypoints.generate_documentation"><code class="docutils literal notranslate"><span class="pre">generate_documentation()</span></code></a></li>
-<li><a class="reference internal" href="#ppft.util.entrypoints.return_true"><code class="docutils literal notranslate"><span class="pre">return_true()</span></code></a></li>
+<li><a class="reference internal" href="#ppft.util.entrypoints.run_cli"><code class="docutils literal notranslate"><span class="pre">run_cli()</span></code></a></li>
 <li><a class="reference internal" href="#ppft.util.entrypoints.run_testing"><code class="docutils literal notranslate"><span class="pre">run_testing()</span></code></a></li>
-<li><a class="reference internal" href="#ppft.util.entrypoints.setup_logging"><code class="docutils literal notranslate"><span class="pre">setup_logging()</span></code></a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#module-ppft.util.parsing">ppft.util.parsing module</a><ul>
@@ -184,7 +165,7 @@
         <li class="right" >
           <a href="ppft.html" title="ppft package"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">Patten&#39;s Personal Finance Tools 0.0.1 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Patten&#39;s Personal Finance Tools 0.0.2 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="modules.html" >ppft</a> &#187;</li>
           <li class="nav-item nav-item-2"><a href="ppft.html" >ppft package</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href="">ppft.util package</a></li> 
