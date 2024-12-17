@@ -2,62 +2,24 @@
 Describes the different entry points for this tool.
 """
 
-import json
-import logging.config
+import argparse
+import logging
 import os
 import pathlib
 import subprocess
 import webbrowser
 
+from ppft.util import general
+from ppft.util import parsing
+
 
 logger = logging.getLogger(__name__)
-
-
-def setup_logging(
-    default_path: str = "./configs/logging.json",
-    default_level: int | str = logging.INFO,
-    env_key: str = "LOG_CFG",
-) -> None:
-    """Setup logging configuration, reading in from logging configuration file if possible.
-
-    :param default_path: Location of the logging config JSON, defaults to "./configs/logging.json"
-    :type default_path: str, optional
-    :param default_level: Level to report for logging, defaults to logging.INFO
-    :type default_level: int | str, optional
-    :param env_key: Sys. ENV variable containing the path of the config file, defaults to "LOG_CFG"
-    :type env_key: str, optional
-    """
-
-    path = default_path
-    value = os.getenv(env_key, None)
-    if value:
-        path = value
-
-    try:
-        if os.path.exists(path):
-            with open(path, "rt", encoding="utf-8") as fin:
-                config = json.load(fin)
-
-                # Verify that the log folder exists
-                log_path = pathlib.Path().cwd() / "logs"
-                if not log_path.exists():
-                    log_path.mkdir(exist_ok=True)
-
-            logging.config.dictConfig(config)
-            logger.info("Successfullly loaded in logging configs.")
-    except FileNotFoundError:
-        # Configuration file not found
-        logger.warning(
-            "Unable to find specified file, defaulting to basic config."
-        )
-        logging.basicConfig(level=default_level)
-        logger.info("Logging using default configs")
 
 
 def generate_documentation() -> None:
     """Generates updated documentation from Sphinx."""
 
-    setup_logging()
+    general.setup_logging()
 
     orig_cwd = pathlib.Path().cwd()
 
@@ -110,7 +72,7 @@ def generate_documentation() -> None:
 def run_testing() -> None:
     """Runs coverage for test suite for patten's tool suite."""
 
-    setup_logging()
+    general.setup_logging()
 
     subprocess.run("coverage run -m pytest", check=False)
     subprocess.run("coverage report", check=False)
@@ -120,11 +82,18 @@ def run_testing() -> None:
     webbrowser.open(coverage_filepath, "1")
 
 
-def return_true() -> bool:
-    """Placeholder for testing scripts to ensure that pts is importable.
+def run_cli(arg_list: list | None = None) -> None:
+    """Runs the tool in general command line mode. Takes input from the command line interface.
 
-    :return: Always returns True.
-    :rtype: bool
+    :param arg_list: CMD-styled inputs of strings, defaults to sys.argv[1:]
+    :type arg_list: list | None, optional
     """
 
-    return True
+    general.setup_logging()
+
+    if arg_list is None:
+        args = parsing.parse_input()
+    else:
+        args = parsing.parse_input(arg_list)
+
+    logger.info("Args returns to entrypoint location")  # Temp statement

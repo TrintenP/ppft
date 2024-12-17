@@ -4,7 +4,6 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "ppft"
-version = "0.0.1"
 authors = [
     { name="Trinten Patten", email="trintenmpatten@gmail.com"}
 ]
@@ -17,7 +16,7 @@ classifiers = [
     "Programming Language :: Python :: 3.12",
     "Operating System :: Windows"
 ]
-dynamic = ["dependencies"]
+dynamic = ["dependencies","version"]
 
 [project.urls]
 HomePage = "https://github.com/TrintenP/ppft"
@@ -34,6 +33,7 @@ Issues = "https://github.com/TrintenP/ppft/issues"
 [project.scripts]
 generate-docs = "ppft.util.entrypoints:generate_documentation"
 ppft-testing   = "ppft.util.entrypoints:run_testing"
+run-ppft = "ppft.util.entrypoints:run_cli"
 
 [tool.black]
 line-length = 79
@@ -46,3 +46,4 @@ packages = ["ppft"]
 
 [tool.setuptools.dynamic]
 dependencies = {file=["requirements.txt"]}
+version = {attr = "ppft.__version__"}

@@ -1,8 +1,8 @@
 """Placeholder for testing GitHub Actions"""
 
-from ppft.util import entrypoints
+from ppft.util import general
 
 
 def test_basic():
     """Ensure ppft is in context"""
-    assert entrypoints.return_true()
+    assert general.return_true()
