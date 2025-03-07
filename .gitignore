@@ -164,3 +164,4 @@ cython_debug/
 logs/
 coverage_report/
 TODO.*
+.vscode/
