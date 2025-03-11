@@ -21,6 +21,8 @@ jobs:
 
       - name: Install uv
         uses: astral-sh/setup-uv@v5
+        with:
+            enable-cache: true
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -28,15 +30,7 @@ jobs:
           python-version-file: "pyproject.toml"
 
       - name: Install project
-        run: |
-          uv venv
-          uv sync
-
-      - name: Save virtual environment
-        uses: actions/upload-artifact@v4
-        with:
-          name: venv
-          path: .\\.venv
+        run: uv sync
 
   code-testing:
     needs: building-project
@@ -45,16 +39,6 @@ jobs:
     steps:
       - name: Checkout the repository
         uses: actions/checkout@v3
-
-      - name: Set up Python
-        uses: actions/setup-python@v4
-        with:
-          python-version-file: "pyproject.toml"
-        
-      - uses: actions/download-artifact@v4
-        with:
-          name: venv
-          path: .\\.venv
 
       - name: Run tests
         run: uv run pytest --maxfail=1 --disable-warnings -q
@@ -79,16 +63,6 @@ jobs:
     steps:
       - name: Checkout the repository
         uses: actions/checkout@v3
-
-      - name: Set up Python
-        uses: actions/setup-python@v4
-        with:
-          python-version-file: "pyproject.toml"
-        
-      - uses: actions/download-artifact@v4
-        with:
-          name: venv
-          path: .\\.venv
 
       - name: Build Sphinx documentation
         run: |
