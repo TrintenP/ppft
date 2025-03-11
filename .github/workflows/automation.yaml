@@ -31,13 +31,13 @@ jobs:
         run : uv sync
 
       - name: Run tests
-        run: uv run pytest --maxfail=1 --disable-warnings -q
+        run: uv run pytest --maxfail=1 --disable-warnings -q --frozen
       
       - name: Run and generate coverage
         run: |
-          uv run coverage run -m pytest
-          uv run coverage report
-          uv run coverage html -d coverage_report
+          uv run coverage run -m pytest --frozen
+          uv run coverage report --frozen
+          uv run coverage html -d coverage_report --frozen
         
       - name: Upload coverage report as an artifact
         uses: actions/upload-artifact@v4
@@ -67,8 +67,8 @@ jobs:
       - name: Build Sphinx documentation
         run: |
           cd docs
-          uv run sphinx-apidoc -o ./source ../ppft
-          make html
+          uv run sphinx-apidoc -o ./source ../ppft --frozen
+          uv run make html --frozen
           
       - name: Upload documentation as an artifact
         uses: actions/upload-artifact@v4
