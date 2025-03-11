@@ -16,7 +16,15 @@ classifiers = [
     "Programming Language :: Python :: 3.12",
     "Operating System :: Windows"
 ]
-dynamic = ["dependencies","version"]
+dynamic = ["version"]
+dependencies=[
+    "build",
+    "coverage",
+    "pytest",
+    "setuptools",
+    "Sphinx",
+    "ppft",
+]
 
 [project.urls]
 HomePage = "https://github.com/TrintenP/ppft"
@@ -43,6 +51,8 @@ pythonpath="ppft"
 [tool.setuptools]
 packages = ["ppft"]
 
+[tool.uv.sources]
+ppft = {path = ".", editable = true}
+
 [tool.setuptools.dynamic]
-dependencies = {file=["requirements.txt"]}
 version = {attr = "ppft.__version__"}
