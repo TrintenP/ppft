@@ -16,24 +16,31 @@ classifiers = [
     "Programming Language :: Python :: 3.12",
     "Operating System :: Windows"
 ]
-dynamic = ["dependencies","version"]
+dynamic = ["version"]
+dependencies=[
+    "build",
+    "coverage",
+    "pytest",
+    "setuptools",
+    "Sphinx",
+    "ppft",
+]
 
 [project.urls]
 HomePage = "https://github.com/TrintenP/ppft"
 Documentation = "https://github.com/TrintenP/ppft/wiki"
 Issues = "https://github.com/TrintenP/ppft/issues"
-# Repository
-# ChangeLog
+ChangeLog = "https://github.com/TrintenP/ppft/blob/main/Changelog.MD"
 # DOWNLOAD
-
-[gui_scripts]
-# Launch the GUI command
-# pt-launch-gui = 
 
 [project.scripts]
 generate-docs = "ppft.util.entrypoints:generate_documentation"
 ppft-testing   = "ppft.util.entrypoints:run_testing"
 run-ppft = "ppft.util.entrypoints:run_cli"
+
+[gui_scripts]
+# Launch the GUI command
+# pt-launch-gui = 
 
 [tool.black]
 line-length = 79
@@ -44,6 +51,8 @@ pythonpath="ppft"
 [tool.setuptools]
 packages = ["ppft"]
 
+[tool.uv.sources]
+ppft = {path = ".", editable = true}
+
 [tool.setuptools.dynamic]
-dependencies = {file=["requirements.txt"]}
 version = {attr = "ppft.__version__"}

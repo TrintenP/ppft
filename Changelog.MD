@@ -29,7 +29,24 @@ Dates, where listed, are formatted in accordance to ISO 8601.
 - Updated static versioning in `pyproject.toml` and sphinx `conf.py` to be dynamic based on `ppft` version attribute.
 - Reformated README with more useful information.
 
-[//]: # (### Removed <- Add this section in when needed)
+[//]: # (### Removed / Deprecated / Fixed / Security <- Add this section in when needed)
 
-[unreleased]: https://github.com/TrintenP/ppft/compare/v0.1.0...HEAD
-[0.1.0]: https://github.com/TrintenP/ppft/releases/v0.1.0
+
+## [0.2.0] - 2025-03-10
+
+### Added
+
+- Integrated uv package manager.
+
+### Changed
+
+- Updated README, Github Actions, and TOML to reflect package manager changes.
+
+### Fixed
+
+- Updated version numbering to be inline with Semantic versioning.
+
+
+[unreleased]: https://github.com/TrintenP/ppft/compare/v0.2.0...HEAD
+[0.2.0]: https://github.com/TrintenP/ppft/releases/v0.1.0...v0.2.0
+[0.1.0]: https://github.com/TrintenP/ppft/releases/tag/v0.1.0

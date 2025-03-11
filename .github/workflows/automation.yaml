@@ -12,70 +12,32 @@ on:
       - develop
 
 jobs:
-  building-project:
-    runs-on: windows-latest
-
-    steps:
-      - name: Checkout the repository
-        uses: actions/checkout@v3
-
-      - name: Set up Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: 3.12
-
-      - name: Set up virtual environment
-        run: |
-          python -m venv venv
-          .\\venv\\Scripts\\activate
-          python -m pip install --upgrade pip
-
-      - name: Install dependencies
-        run: |
-          .\\venv\\Scripts\\activate
-          pip install -r requirements.txt
-
-      - name: Build the project
-        run: |
-          .\\venv\\Scripts\\activate
-          python -m build
-          pip install -e .
-
-      - name: Save virtual environment
-        uses: actions/upload-artifact@v4
-        with:
-          name: venv
-          path: .\\venv
-
   code-testing:
-    needs: building-project
     runs-on: windows-latest
 
     steps:
       - name: Checkout the repository
         uses: actions/checkout@v3
 
-      - name: Set up Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: 3.12
-        
-      - uses: actions/download-artifact@v4
-        with:
-          name: venv
-          path: .\\venv
+      - name: Install uv
+        id: setup-uv
+        uses: astral-sh/setup-uv@v5
 
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version-file: "pyproject.toml"
+
+      - name: Install the project
+        run : uv sync
       - name: Run tests
-        run: |
-          .\\venv\\Scripts\\activate
-          pytest --maxfail=1 --disable-warnings -q
+        run: uv run --frozen pytest --maxfail=1 --disable-warnings -q 
       
       - name: Run and generate coverage
         run: |
-          .\\venv\\Scripts\\activate
-          coverage run -m pytest
-          coverage report
-          coverage html -d coverage_report
+          uv run --frozen coverage run -m pytest
+          uv run --frozen coverage report
+          uv run --frozen coverage html -d coverage_report
         
       - name: Upload coverage report as an artifact
         uses: actions/upload-artifact@v4
@@ -83,31 +45,31 @@ jobs:
           name: coverage-report
           path: coverage_report
 
-
   generate-documentation:
-    needs: [building-project, code-testing]
+    needs: code-testing
     runs-on: windows-latest
 
     steps:
       - name: Checkout the repository
         uses: actions/checkout@v3
 
+      - name: Install uv
+        id: setup-uv
+        uses: astral-sh/setup-uv@v5
+
       - name: Set up Python
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5
         with:
-          python-version: 3.12
-        
-      - uses: actions/download-artifact@v4
-        with:
-          name: venv
-          path: .\\venv
+          python-version-file: "pyproject.toml"
+
+      - name: Install the project
+        run : uv sync
 
       - name: Build Sphinx documentation
         run: |
-          .\\venv\\Scripts\\activate
           cd docs
-          sphinx-apidoc -o ./source ../ppft
-          make html
+          uv run --frozen sphinx-apidoc -o ./source ../ppft
+          uv run --frozen make html
           
       - name: Upload documentation as an artifact
         uses: actions/upload-artifact@v4
