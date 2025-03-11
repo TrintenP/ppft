@@ -28,7 +28,9 @@ jobs:
           python-version-file: "pyproject.toml"
 
       - name: Install project
-        run: uv sync
+        run: |
+          uv venv
+          uv sync
 
       - name: Save virtual environment
         uses: actions/upload-artifact@v4
