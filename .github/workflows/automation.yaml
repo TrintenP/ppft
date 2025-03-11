@@ -12,7 +12,7 @@ on:
       - develop
 
 jobs:
-  building-project:
+  code-testing:
     runs-on: windows-latest
 
     steps:
@@ -21,24 +21,14 @@ jobs:
 
       - name: Install uv
         uses: astral-sh/setup-uv@v5
-        with:
-            enable-cache: true
 
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
           python-version-file: "pyproject.toml"
 
-      - name: Install project
-        run: uv sync
-
-  code-testing:
-    needs: building-project
-    runs-on: windows-latest
-
-    steps:
-      - name: Checkout the repository
-        uses: actions/checkout@v3
+      - name: Sync environment
+        run : uv sync
 
       - name: Run tests
         run: uv run pytest --maxfail=1 --disable-warnings -q
@@ -55,14 +45,24 @@ jobs:
           name: coverage-report
           path: coverage_report
 
-
   generate-documentation:
-    needs: [building-project, code-testing]
+    needs: code-testing
     runs-on: windows-latest
 
     steps:
       - name: Checkout the repository
         uses: actions/checkout@v3
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v5
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version-file: "pyproject.toml"
+
+      - name: Sync environment
+        run : uv sync
 
       - name: Build Sphinx documentation
         run: |
