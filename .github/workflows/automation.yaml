@@ -36,7 +36,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: venv
-          path: .\\venv
+          path: .\\.venv
 
   code-testing:
     needs: building-project
@@ -54,7 +54,7 @@ jobs:
       - uses: actions/download-artifact@v4
         with:
           name: venv
-          path: .\\venv
+          path: .\\.venv
 
       - name: Run tests
         run: uv run pytest --maxfail=1 --disable-warnings -q
@@ -88,7 +88,7 @@ jobs:
       - uses: actions/download-artifact@v4
         with:
           name: venv
-          path: .\\venv
+          path: .\\.venv
 
       - name: Build Sphinx documentation
         run: |
