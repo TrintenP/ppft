@@ -18,14 +18,15 @@ jobs:
             - name: Setup Environment
               uses: ./.github/workflows/setup_code
 
-            - run: uv sync
+            - name: Install project
+              run: uv sync
 
             - name: Testing
               run: uv run --frozen pytest --maxfail=1 --disable-warnings -q
 
     type_check:
         name: Type Checking
-        runs-on: windows-latelst
+        runs-on: windows-latest
 
         steps:
             - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683  # v4.2.2
