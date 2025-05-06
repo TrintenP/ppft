@@ -7,10 +7,27 @@ on:
 
     workflow_call:
 
-jobs:   
-    testing:
-        name: Testing
+jobs:
+    linting:
         runs-on: windows-latest
+
+        steps:
+            - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683  # v4.2.2
+            
+            - name: Setup Environment
+              uses: ./.github/workflows/setup_code
+
+            - name: Install project
+              run: uv sync
+
+            - name: Linting
+              run: uv run ruff format --check --diff
+
+
+    testing-check:
+        needs: linting
+        runs-on: windows-latest
+        
 
         steps:
             - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683  # v4.2.2
@@ -25,8 +42,8 @@ jobs:
               run: uv run --frozen pytest --maxfail=1 --disable-warnings -q
 
     type_check:
-        name: Type Checking
         runs-on: windows-latest
+        needs: linting
 
         steps:
             - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683  # v4.2.2
@@ -39,4 +56,20 @@ jobs:
             - name: Lint
               run: uv run mypy ppft
 
-    
+    security_check:
+        needs: linting
+        runs-on: windows-latest
+
+        steps:
+            - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683  # v4.2.2
+            
+            - name: Setup Environment
+              uses: ./.github/workflows/setup_code
+
+            - name: Install project
+              run: uv sync
+
+            - name: Security call
+              run: uv run bandit -c "pyproject.toml" -r ppft
+
+            
