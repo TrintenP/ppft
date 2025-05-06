@@ -21,9 +21,7 @@ def parse_input(arg_list: list | None = None) -> argparse.Namespace:
     if arg_list is None:
         arg_list = sys.argv[1:]
 
-    parser = argparse.ArgumentParser(
-        description="Parse inputs from Command Line."
-    )
+    parser = argparse.ArgumentParser(description="Parse inputs from Command Line.")
 
     args = parser.parse_args(arg_list)
 

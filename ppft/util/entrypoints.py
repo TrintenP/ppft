@@ -2,12 +2,13 @@
 Describes the different entry points for this tool.
 """
 
-import argparse
 import logging
 import os
 import pathlib
 import subprocess
+import time
 import webbrowser
+
 
 from ppft.util import general
 from ppft.util import parsing
@@ -96,4 +97,14 @@ def run_cli(arg_list: list | None = None) -> None:
     else:
         args = parsing.parse_input(arg_list)
 
-    logger.info("Args returns to entrypoint location")  # Temp statement
+    logger.info(f"Read in the following args: {args}")
+
+    user_value = "Esc"
+    loan_list = []
+
+    # Rudimentry Prompt; Replace with GUI
+    while True:
+        print("")
+        user_value = input()
+        if user_value.lower() == "esc":
+            break

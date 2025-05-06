@@ -42,9 +42,7 @@ def setup_logging(
             logger.info("Successfullly loaded in logging configs.")
     except FileNotFoundError:
         # Configuration file not found
-        logger.warning(
-            "Unable to find specified file, defaulting to basic config."
-        )
+        logger.warning("Unable to find specified file, defaulting to basic config.")
         logging.basicConfig(level=default_level)
         logger.info("Logging using default configs")
 
