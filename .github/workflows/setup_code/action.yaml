@@ -20,4 +20,4 @@ runs:
       
       - name: Install Project
         run: uv sync --locked --all-extras
-        shell: python
+        shell: cmd
