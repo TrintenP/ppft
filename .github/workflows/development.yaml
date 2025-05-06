@@ -18,8 +18,10 @@ jobs:
             - name: Setup Environment
               uses: ./.github/workflows/setup_code
 
+            - run: uv sync
+
             - name: Testing
-              run: uv run pytest
+              run: uv run --frozen pytest --maxfail=1 --disable-warning -q
 
 
     # Lint:
