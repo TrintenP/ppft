@@ -19,7 +19,6 @@ jobs:
             - name: Linting
               run: uv run ruff format --check --diff
 
-
     testing-check:
         needs: linting
         runs-on: windows-latest
