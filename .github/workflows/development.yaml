@@ -36,6 +36,6 @@ jobs:
             - run: uv sync
             
             - name: Lint
-              uses: uv run mypy ppft
+              run: uv run mypy ppft
 
     
