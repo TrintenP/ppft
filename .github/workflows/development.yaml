@@ -7,25 +7,16 @@ on:
 
     workflow_call:
 
-jobs:
-    build-env:
-        name: Python
-        runs-on: windows-latest
-
-        steps:
-            - name: Checkout Repo
-              uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683  # v4.2.2
-
-            - name: Setup Environment
-              uses: ./.github/workflows/setup_code
-        
+jobs:   
     testing:
         name: Testing
         runs-on: windows-latest
-        needs: build-env
 
         steps:
             - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683  # v4.2.2
+            
+            - name: Setup Environment
+              uses: ./.github/workflows/setup_code
 
             - name: Testing
               run: uv run pytest
