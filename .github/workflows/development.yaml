@@ -36,6 +36,7 @@ jobs:
               run: uv cache prune --ci
 
     Lint:
+        needs: build-env
         name: Linting
         runs-on: windows-latest
 
