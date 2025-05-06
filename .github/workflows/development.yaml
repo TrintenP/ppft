@@ -13,9 +13,19 @@ jobs:
         runs-on: windows-latest
 
         steps:
+            - name: Checkout Repo
+              uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683  # v4.2.2
+
             - name: Setup Environment
-              uses: ./.github/workflows/setup_code.yaml
+              uses: ./.github/workflows/setup_code
         
+    testing:
+        name: Testing
+        runs-on: windows-latest
+
+        steps:
+            - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683  # v4.2.2
+
             - name: Testing
               run: uv run pytest
 
