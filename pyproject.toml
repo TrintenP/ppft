@@ -24,6 +24,8 @@ dependencies=[
     "setuptools",
     "Sphinx",
     "ppft",
+    "bandit>=1.8.3",
+    "mypy>=1.15.0",
 ]
 
 [project.urls]
