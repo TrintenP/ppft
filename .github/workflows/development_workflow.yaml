@@ -1,10 +1,6 @@
 name: Development
 
 on:
-    pull_request:
-        types: [opened, edited, synchronize, reopened]
-    push:
-
     workflow_call:
 
 jobs:
