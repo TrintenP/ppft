@@ -21,26 +21,21 @@ jobs:
             - run: uv sync
 
             - name: Testing
-              run: uv run --frozen pytest --maxfail=1 --disable-warning -q
+              run: uv run --frozen pytest --maxfail=1 --disable-warnings -q
 
+    type_check:
+        name: Type Checking
+        runs-on: windows-latelst
 
-    # Lint:
-    #     needs: build-env
-    #     name: Linting
-    #     runs-on: windows-latest
+        steps:
+            - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683  # v4.2.2
 
-    #     steps:
-    #         - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683  # v4.2.2
+            - name: Setup Environment
+              uses: ./.github/workflows/setup_code
 
-    #         - name: Install uv
-    #           uses: astral-sh/setup-uv@6b9c6063abd6010835644d4c2e1bef4cf5cd0fca  # v6.0.1
-    #           with:
-    #             version: "0.7.2"
-    #             enable-cache: true
+            - run: uv sync
             
-    #         - name: Install
-    #           run: uv sync --locked --all-extras
+            - name: Lint
+              uses: uv run mypy ppft
 
-    #         - name: Lint
-    #           run: uv run mypy pfts
-
+    
